@@ -48,15 +48,15 @@ form #search:focus {
 }
 
 .forecast {
-    background-image: url('attachments/warm.avif');
-    background-size: cover;
     width: 80%;
     padding: 5% 10%;
+    background-size: cover;
     border-radius: 8px;
 
     display: flex;
     justify-content: space-between;
 }
+
 
 .condition {
     display: flex;

@@ -1,5 +1,10 @@
 //dom elements
 const headerDom = document.querySelector('.container h1');
+const forecastContainer = document.querySelector('.forecast');
+const forecastBavkground = window.getComputedStyle(
+  forecastContainer,
+  ':before'
+);
 const currentTempDom = document.querySelector('.temp');
 const windDom = document.querySelector('.wind');
 const pressureDom = document.querySelector('.pressure');
@@ -39,6 +44,16 @@ function appendToDom() {
   windDom.textContent = `Wind: ${wind} kmph`;
   pressureDom.textContent = `Pressure: ${pressure} mb`;
   headerDom.textContent = `${location1} Weather Forecast`;
+  if (currentTempC <= 5) {
+    forecastContainer.style.backgroundImage =
+      'url("attachments/freezing cold.jpg")';
+  } else if (currentTempC > 5 && currentTempC <= 15) {
+    forecastContainer.style.backgroundImage = 'url("attachments/cold.jpg")';
+  } else if (currentTempC > 15 && currentTempC <= 25) {
+    forecastContainer.style.backgroundImage = 'url("attachments/warm.avif")';
+  } else if (currentTempC > 25) {
+    forecastContainer.style.backgroundImage = 'url("attachments/hot.jpg")';
+  }
 }
 
 setWeather().then(() => {
