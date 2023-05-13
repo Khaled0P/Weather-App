@@ -63,9 +63,11 @@ setWeather().then(() => {
   switchTemp.addEventListener('click', () => {
     if (displayTemp === 'c'){
       currentTempDom.textContent = `${currentTempF} °F`;
+      switchTemp.textContent = '°C'
       displayTemp = 'f'
     } else if (displayTemp === 'f'){
-    currentTempDom.textContent = `${currentTempC} °C`;
+      currentTempDom.textContent = `${currentTempC} °C`;
+      switchTemp.textContent = '°F'
     displayTemp = 'c';
     }
   })

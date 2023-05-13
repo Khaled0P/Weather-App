@@ -89,7 +89,7 @@ form #search:focus {
     position: absolute;
     top: -10px;
     font-weight: bold;
-    right: -20px;
+    right: -30px;
     border: none;
     border-radius: 2px;
     cursor: pointer;
