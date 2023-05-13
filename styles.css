@@ -50,7 +50,9 @@ form #search:focus {
 .forecast {
     width: 80%;
     padding: 5% 10%;
-    background-size: cover;
+    background-size: 100% 100%;
+    background-position: center center;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     border-radius: 8px;
 
     display: flex;
@@ -74,9 +76,26 @@ form #search:focus {
     justify-content: center;
     align-items: center;
     gap: 5px;
+    position: relative;
 }
 
 .stats .temp {
     font-size: 4em;
     margin-bottom: 20px;
+}
+
+.stats .switchTemp{
+    padding: 3px 5px 3px 3px;
+    position: absolute;
+    top: -10px;
+    font-weight: bold;
+    right: -20px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.stats .switchTemp:hover{
+    background-color: black;
+    color: white;
 }

@@ -10,6 +10,7 @@ const windDom = document.querySelector('.wind');
 const pressureDom = document.querySelector('.pressure');
 const conditionDom = document.querySelector('.text');
 const iconDom = document.querySelector('.icon img');
+const switchTemp = document.querySelector('.switchTemp')
 const form = document.querySelector('form');
 const search = document.querySelector('#search');
 //declare weather stats
@@ -20,7 +21,8 @@ let weather,
   icon,
   wind,
   pressure,
-  location1;
+  location1,
+  displayTemp = 'c';
 
 async function setWeather(city = 'London') {
   const response = await fetch(
@@ -40,7 +42,7 @@ async function setWeather(city = 'London') {
 function appendToDom() {
   iconDom.src = icon;
   conditionDom.textContent = condition;
-  currentTempDom.textContent = `${currentTempC} °c`;
+  currentTempDom.textContent = `${currentTempC} °C`;
   windDom.textContent = `Wind: ${wind} kmph`;
   pressureDom.textContent = `Pressure: ${pressure} mb`;
   headerDom.textContent = `${location1} Weather Forecast`;
@@ -58,6 +60,15 @@ function appendToDom() {
 
 setWeather().then(() => {
   appendToDom();
+  switchTemp.addEventListener('click', () => {
+    if (displayTemp === 'c'){
+      currentTempDom.textContent = `${currentTempF} °F`;
+      displayTemp = 'f'
+    } else if (displayTemp === 'f'){
+    currentTempDom.textContent = `${currentTempC} °C`;
+    displayTemp = 'c';
+    }
+  })
 });
 
 form.addEventListener('submit', (e) => {
