@@ -50,13 +50,25 @@ form #search:focus {
 .forecast {
     width: 80%;
     padding: 5% 10%;
-    background-size: 100% 100%;
-    background-position: center center;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
     border-radius: 8px;
+    position: relative;
 
     display: flex;
     justify-content: space-between;
+}
+
+.forecastBg {
+    background-size: 100% 100%;
+    background-position: center center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 8px;
+    opacity: 0;
+    
 }
 
 
@@ -66,8 +78,11 @@ form #search:focus {
     justify-content: center;
     align-items: center;
     gap: 15px;
+    position: relative;
+    z-index: 5;
+    transform: translateX(-50%);
+    
 }
-
 
 
 .stats {
@@ -77,6 +92,14 @@ form #search:focus {
     align-items: center;
     gap: 5px;
     position: relative;
+    z-index: 5;
+    transform: translateX(50%);
+}
+
+.animate {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 1s ease-in-out, opacity 1s ease-in-out;
 }
 
 .stats .temp {
@@ -84,7 +107,7 @@ form #search:focus {
     margin-bottom: 20px;
 }
 
-.stats .switchTemp{
+.stats .switchTemp {
     padding: 3px 5px 3px 3px;
     position: absolute;
     top: -10px;
@@ -95,7 +118,7 @@ form #search:focus {
     cursor: pointer;
 }
 
-.stats .switchTemp:hover{
+.stats .switchTemp:hover {
     background-color: black;
     color: white;
 }
@@ -104,30 +127,30 @@ form #search:focus {
 /********************  media query   **********************/
 
 @media screen and (max-width: 700px) {
-    form{
+    form {
         flex-direction: column;
         gap: 5px;
     }
 
-    form #search{
+    form #search {
         width: 80%;
     }
-    
-    form #submit{
+
+    form #submit {
         width: 80%;
         padding: 5px;
     }
 
-    .container h1{
+    .container h1 {
         font-size: 2.3rem;
     }
-    
-    .forecast{
+
+    .forecast {
         flex-direction: column-reverse;
         gap: 2.5rem;
     }
 
-    .stats{
+    .stats {
         gap: 10px;
     }
 }

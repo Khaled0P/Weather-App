@@ -1,10 +1,8 @@
 //dom elements
 const headerDom = document.querySelector('.container h1');
-const forecastContainer = document.querySelector('.forecast');
-const forecastBavkground = window.getComputedStyle(
-  forecastContainer,
-  ':before'
-);
+const forecastContainer = document.querySelector('.forecastBg');
+const statsDom = document.querySelector('.stats')
+const conditionBox = document.querySelector('.condition')
 const currentTempDom = document.querySelector('.temp');
 const windDom = document.querySelector('.wind');
 const pressureDom = document.querySelector('.pressure');
@@ -46,29 +44,49 @@ function appendToDom() {
   windDom.textContent = `Wind: ${wind} kmph`;
   pressureDom.textContent = `Pressure: ${pressure} mb`;
   headerDom.textContent = `${location1} Weather Forecast`;
+
+  //change forecast background image based on temp
   if (currentTempC <= 5) {
     forecastContainer.style.backgroundImage =
       'url("attachments/freezing cold.jpg")';
+    
   } else if (currentTempC > 5 && currentTempC <= 15) {
     forecastContainer.style.backgroundImage = 'url("attachments/cold.jpg")';
+    
   } else if (currentTempC > 15 && currentTempC <= 25) {
     forecastContainer.style.backgroundImage = 'url("attachments/warm.avif")';
+
   } else if (currentTempC > 25) {
     forecastContainer.style.backgroundImage = 'url("attachments/hot.jpg")';
   }
+  animationHandle()
+}
+
+function animationHandle() {
+  forecastContainer.classList.remove('animate');
+  conditionBox.classList.remove('animate');
+  statsDom.classList.remove('animate');
+
+  //setting time out for elements to animate instead of clases instantly switching
+  setTimeout(() =>{
+    forecastContainer.classList.add('animate');
+    conditionBox.classList.add('animate');
+    statsDom.classList.add('animate');
+
+  },10);
 }
 
 setWeather().then(() => {
   appendToDom();
   switchTemp.addEventListener('click', () => {
-    if (displayTemp === 'c'){
+    if (displayTemp === 'c') {
       currentTempDom.textContent = `${currentTempF} °F`;
       switchTemp.textContent = '°C'
       displayTemp = 'f'
-    } else if (displayTemp === 'f'){
+    } else if (displayTemp === 'f') {
       currentTempDom.textContent = `${currentTempC} °C`;
       switchTemp.textContent = '°F'
-    displayTemp = 'c';
+      displayTemp = 'c';
     }
   })
 });
